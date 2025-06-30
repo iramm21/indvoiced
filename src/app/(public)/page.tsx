@@ -1,160 +1,132 @@
 'use client';
 
 import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Separator } from '@/components/ui/separator';
-import { toast } from 'sonner';
-import {
-  ShieldCheck,
-  LayoutPanelLeft,
-  Terminal,
-  Database,
-  Layers3,
-  Rocket,
-} from 'lucide-react';
-
-import { NextjsLogo } from '@/components/icons/NextjsLogo';
-import { PrismaLogo } from '@/components/icons/PrismaLogo';
-import { SupabaseLogo } from '@/components/icons/SupabaseLogo';
-import { TailwindLogo } from '@/components/icons/TailwindLogo';
-import { ShadcnLogo } from '@/components/icons/ShadcnLogo';
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function HomePage() {
   return (
-    <div className="space-y-20 pb-20">
-      {/* Hero */}
-      <section className="max-w-5xl mx-auto text-center pt-20 space-y-6 px-4">
-        <h1 className="text-4xl md:text-6xl font-bold tracking-tight leading-tight">
-          Project Starter Kit
-        </h1>
-        <p className="text-muted-foreground max-w-2xl mx-auto text-lg">
-          A production-ready starter built with Prisma, Supabase, Shadcn UI, and
-          Next.js.
-        </p>
-        <Button
-          onClick={() => toast.success('This is a working toast! 🎉')}
-          variant="default"
-          className="mt-4"
-        >
-          Show Toast
-        </Button>
-      </section>
+    <main className="min-h-screen flex flex-col">
+      {/* Hero Section */}
+      <section
+        className="
+          w-full
+          py-20
+          px-8
+          bg-primary/10
+          dark:bg-gradient-to-b dark:from-black/80 dark:via-transparent dark:to-black/80
+        "
+      >
+        <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+          {/* Text Content */}
+          <div className="text-center lg:text-left max-w-lg mx-auto lg:mx-0 text-primary dark:text-primary-foreground">
+            <h1 className="text-4xl font-extrabold leading-tight mb-6 dark:text-white dark:drop-shadow-[0_1px_3px_rgba(0,0,0,0.8)]">
+              Simplify your invoicing, <br /> get paid faster.
+            </h1>
+            <p className="text-lg mb-8 text-muted-foreground dark:text-gray-300 dark:drop-shadow-[0_1px_2px_rgba(0,0,0,0.7)]">
+              Indvoiced is a modern invoicing platform built for freelancers and
+              small businesses. Create professional invoices, track payments,
+              and manage clients with ease.
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+              <Link href="/register" passHref>
+                <Button
+                  asChild
+                  size="lg"
+                  className="font-semibold"
+                  variant="default"
+                >
+                  <span>Get Started</span>
+                </Button>
+              </Link>
+              <Link href="/features" passHref>
+                <Button
+                  asChild
+                  variant="outline"
+                  size="lg"
+                  className="
+                    font-semibold
+                    text-primary
+                    dark:text-gray-300
+                    dark:border-gray-300
+                    hover:bg-accent
+                    hover:text-accent-foreground
+                    dark:hover:bg-input/50
+                    dark:hover:text-accent-foreground
+                  "
+                >
+                  <span>Learn More</span>
+                </Button>
+              </Link>
+            </div>
+          </div>
 
-      {/* Tech Stack */}
-      <section className="max-w-5xl mx-auto text-center space-y-4 px-4">
-        <h2 className="text-2xl font-semibold">Powered by:</h2>
-        <div className="flex flex-wrap justify-center gap-6 items-center text-muted-foreground text-sm">
-          <div className="flex items-center gap-2">
-            <NextjsLogo className="w-5 h-5 text-foreground" />
-            <span>Next.js</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <PrismaLogo className="w-5 h-5 text-foreground" />
-            <span>Prisma</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <SupabaseLogo className="w-5 h-5 text-foreground" />
-            <span>Supabase</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <TailwindLogo className="w-5 h-5 text-foreground" />
-            <span>Tailwind CSS</span>
-          </div>
-          <div className="flex items-center gap-2">
-            <ShadcnLogo className="w-5 h-5 text-foreground" />
-            <span>shadcn/ui</span>
+          {/* Hero Image */}
+          <div className="relative w-full h-80 sm:h-[28rem] lg:h-[32rem] mx-auto max-w-lg lg:max-w-none rounded-xl overflow-hidden shadow-lg bg-background">
+            <Image
+              src="/hero.jpg"
+              alt="Illustration of invoicing app"
+              fill
+              className="object-cover"
+              priority
+            />
           </div>
         </div>
       </section>
 
-      <Separator className="max-w-2xl mx-auto" />
-
-      {/* Feature Cards */}
-      <section className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto px-4">
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">
-              Authentication
-            </CardTitle>
-            <ShieldCheck className="h-5 w-5 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Login and register with Supabase Auth — secure and extendable.
+      {/* Features Section */}
+      <section
+        id="features"
+        className="bg-background dark:bg-background-dark py-20 px-8 max-w-7xl mx-auto"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-16 text-center">
+          <div>
+            <h3 className="text-2xl font-semibold mb-3 text-primary">
+              Professional Invoices
+            </h3>
+            <p className="text-muted-foreground">
+              Customize and send beautiful invoices in minutes.
             </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">
-              UI Components
-            </CardTitle>
-            <LayoutPanelLeft className="h-5 w-5 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Built with shadcn/ui and Tailwind for fast, beautiful interfaces.
+          </div>
+          <div>
+            <h3 className="text-2xl font-semibold mb-3 text-primary">
+              Automatic Reminders
+            </h3>
+            <p className="text-muted-foreground">
+              Never miss a payment with smart, automatic reminders.
             </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">
-              Backend Ready
-            </CardTitle>
-            <Terminal className="h-5 w-5 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Includes Prisma setup, Supabase DB, and secure API structure.
+          </div>
+          <div>
+            <h3 className="text-2xl font-semibold mb-3 text-primary">
+              Secure Payments
+            </h3>
+            <p className="text-muted-foreground">
+              Connect payment gateways and get paid faster, securely.
             </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">Database</CardTitle>
-            <Database className="h-5 w-5 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Supabase + Prisma configured with row-level security and
-              migrations.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">
-              Stacked Architecture
-            </CardTitle>
-            <Layers3 className="h-5 w-5 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              Clean file structure with components, routes, utils, and API
-              layers.
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-            <CardTitle className="text-lg font-semibold">
-              Launch Ready
-            </CardTitle>
-            <Rocket className="h-5 w-5 text-primary" />
-          </CardHeader>
-          <CardContent>
-            <p className="text-sm text-muted-foreground">
-              ESLint, Prettier, env configs, and deploy setup included.
-            </p>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </section>
-    </div>
+
+      {/* Stats Section */}
+      <section className="max-w-7xl mx-auto px-8 py-20 text-center">
+        <h3 className="text-3xl font-bold mb-10 text-primary">
+          Trusted by professionals worldwide
+        </h3>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <div>
+            <p className="text-5xl font-extrabold text-primary">5,000+</p>
+            <p className="text-muted-foreground mt-2">Active Users</p>
+          </div>
+          <div>
+            <p className="text-5xl font-extrabold text-primary">1M+</p>
+            <p className="text-muted-foreground mt-2">Invoices Created</p>
+          </div>
+          <div>
+            <p className="text-5xl font-extrabold text-primary">99.9%</p>
+            <p className="text-muted-foreground mt-2">Uptime</p>
+          </div>
+        </div>
+      </section>
+    </main>
   );
 }
