@@ -6,12 +6,36 @@ import { Mail, Phone, MapPin, User } from 'lucide-react';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
+import type { Metadata } from 'next';
 
-interface ClientPageProps {
-  params: { id: string };
+type RouteParams = {
+  id: string;
+};
+
+type PageProps = {
+  params: RouteParams;
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<RouteParams>;
+}): Promise<Metadata> {
+  const { id } = await params;
+
+  const client = await prisma.client.findUnique({
+    where: { id },
+  });
+
+  if (!client) return { title: 'Client Not Found' };
+
+  return {
+    title: client.name,
+    description: `Details for ${client.name}`,
+  };
 }
 
-export default async function ClientPage({ params }: ClientPageProps) {
+export default async function ClientPage({ params }: PageProps) {
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -19,14 +43,12 @@ export default async function ClientPage({ params }: ClientPageProps) {
 
   if (!user) return notFound();
 
-  // Fetch UserProfile by authUserId (Supabase user ID)
   const userProfile = await prisma.userProfile.findUnique({
     where: { authUserId: user.id },
   });
 
   if (!userProfile) return notFound();
 
-  // Fetch client by id and userProfile.id as userId
   const client = await prisma.client.findFirst({
     where: {
       id: params.id,
