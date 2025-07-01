@@ -25,7 +25,8 @@ export default async function ClientPage({ params }: ClientPageProps) {
 
   if (!userProfile) return notFound();
 
-  const client = await prisma.client.findUnique({
+  // Use findFirst to filter by id and userId together
+  const client = await prisma.client.findFirst({
     where: {
       id: params.id,
       userId: userProfile.id,
