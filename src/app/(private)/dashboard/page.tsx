@@ -1,6 +1,6 @@
 // app/dashboard/page.tsx
-import { createSupabaseServerClient } from '@/lib/supabase/server';
-import prisma from '@/lib/prisma';
+import { createSupabaseServerClient } from '@/lib/db/supabase/server';
+import prisma from '@/lib/db/prisma';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 

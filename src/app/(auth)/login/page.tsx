@@ -2,7 +2,7 @@ import { GalleryVerticalEnd, Home } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { LoginForm } from '@/features/auth/components/login-form';
+import { LoginForm } from '@/features/auth/components/LoginUserForm';
 
 export default function LoginPage() {
   return (

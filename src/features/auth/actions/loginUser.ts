@@ -1,7 +1,7 @@
 // features/auth/actions/login.ts
 'use server';
 
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/db/supabase/server';
 
 export async function loginWithEmailServer(email: string, password: string) {
   const supabase = await createSupabaseServerClient();

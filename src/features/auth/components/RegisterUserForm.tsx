@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { useState, startTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { registerWithEmail } from '@/features/auth/actions/register';
+import { registerWithEmail } from '@/features/auth/actions/registerUser';
 
 export function RegisterForm({
   className,

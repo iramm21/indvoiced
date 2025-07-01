@@ -1,8 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Sidebar } from '@/components/PrivateSidebar';
-import { Header } from '@/components/PrivateHeader';
+import { Sidebar } from '@/components/layout/private/PrivateSidebar';
+import { Header } from '@/components/layout/private/PrivateHeader';
 
 export default function PrivateLayout({
   children,

@@ -7,8 +7,8 @@ import { Label } from '@/components/ui/label';
 import { useState, startTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { toast } from 'sonner';
-import { loginWithEmailServer } from '@/features/auth/actions/login';
-import { supabase } from '@/lib/supabase/client';
+import { loginWithEmailServer } from '@/features/auth/actions/loginUser';
+import { supabase } from '@/lib/db/supabase/client';
 
 export function LoginForm({
   className,

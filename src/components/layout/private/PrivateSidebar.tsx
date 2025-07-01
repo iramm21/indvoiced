@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LogoutButton } from '@/features/auth/components/LogoutButton';
+import { LogoutButton } from '@/features/auth/components/LogoutUserButton';
 import { cn } from '@/lib/utils';
 
 interface SidebarProps {

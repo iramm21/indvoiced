@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/db/supabase/client';
 
 export function LogoutButton() {
   async function handleLogout() {

@@ -1,6 +1,6 @@
 'use server';
 
-import { createSupabaseServerClient } from '@/lib/supabase/server';
+import { createSupabaseServerClient } from '@/lib/db/supabase/server';
 import { createUserProfile } from '@/features/userProfile/actions/createUserProfile';
 import { UserProfileCreateInput } from '@/types/userProfile';
 import { RegisterUserData } from '@/types/auth'; // or wherever you define it

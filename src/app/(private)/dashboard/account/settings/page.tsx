@@ -1,28 +1,33 @@
-// app/dashboard/account/settings/page.tsx
+import Link from 'next/link';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+
 export default function SettingsPage() {
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Account Settings</h1>
-      <p className="text-muted-foreground mb-6">
-        This is where you will be able to manage your profile, change your
-        password, and configure other preferences.
-      </p>
+      <h1 className="text-2xl font-bold mb-6">Account Settings</h1>
 
-      {/* You can build this out into a full form */}
-      <div className="space-y-4">
-        <div className="bg-background p-4 border rounded shadow-sm">
-          <h2 className="text-lg font-semibold mb-2">Profile</h2>
-          <p className="text-sm text-muted-foreground">
-            Edit your personal details, name, contact info, etc.
-          </p>
-        </div>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <Link href="/dashboard/account/settings/profile" passHref>
+          <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <CardHeader>
+              <CardTitle>Profile</CardTitle>
+            </CardHeader>
+            <CardContent>
+              Edit your personal details, name, contact info, etc.
+            </CardContent>
+          </Card>
+        </Link>
 
-        <div className="bg-background p-4 border rounded shadow-sm">
-          <h2 className="text-lg font-semibold mb-2">Security</h2>
-          <p className="text-sm text-muted-foreground">
-            Change your password or manage login devices.
-          </p>
-        </div>
+        <Link href="/dashboard/account/settings/security" passHref>
+          <Card className="cursor-pointer hover:shadow-md transition-shadow">
+            <CardHeader>
+              <CardTitle>Security</CardTitle>
+            </CardHeader>
+            <CardContent>
+              Change your password or manage login devices.
+            </CardContent>
+          </Card>
+        </Link>
       </div>
     </div>
   );

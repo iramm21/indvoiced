@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { toast } from 'sonner';
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/db/supabase/client';
 import type { User } from '@supabase/auth-js';
 import { FacebookIcon } from '@/components/icons/FacebookIcon';
 import { InstagramIcon } from '@/components/icons/InstagramIcon';
@@ -52,9 +52,9 @@ export function Footer() {
           <div>
             <h3 className="mb-4 font-semibold text-lg text-primary">About</h3>
             <p className="text-sm max-w-xs mx-auto md:mx-0">
-              Indvoiced is a modern invoicing platform designed for
-              freelancers and small businesses to simplify payments, manage
-              clients, and grow efficiently.
+              Indvoiced is a modern invoicing platform designed for freelancers
+              and small businesses to simplify payments, manage clients, and
+              grow efficiently.
             </p>
           </div>
 

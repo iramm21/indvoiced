@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { supabase } from '@/lib/supabase/client';
+import { supabase } from '@/lib/db/supabase/client';
 import type { User, Session, AuthChangeEvent } from '@supabase/auth-js';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
@@ -11,7 +11,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from '@/components/ui/dropdown-menu';
-import { LogoutButton } from '@/features/auth/components/LogoutButton';
+import { LogoutButton } from '@/features/auth/components/LogoutUserButton';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 
 export function Header() {
