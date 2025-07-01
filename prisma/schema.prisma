@@ -5,9 +5,9 @@
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
 generator client {
-  provider = "prisma-client-js"
-  output = "../node_modules/.prisma/client"
-  binaryTargets   = ["native", "rhel-openssl-3.0.x"]
+  provider      = "prisma-client-js"
+  output        = "../node_modules/.prisma/client"
+  binaryTargets = ["native", "rhel-openssl-3.0.x"]
 }
 
 datasource db {
@@ -16,28 +16,81 @@ datasource db {
 }
 
 model UserProfile {
-  id          String   @id @default(uuid())
-  authUserId  String   @unique  // this stores the Supabase Auth UUID
-  email       String   @unique
-  firstName   String?
-  lastName    String?
-  phone       String?
-  address     String?
-  createdAt   DateTime @default(now())
+  id         String   @id @default(uuid())
+  authUserId String   @unique // this stores the Supabase Auth UUID
+  email      String   @unique
+  firstName  String?
+  lastName   String?
+  phone      String?
+  address    String?
+  createdAt  DateTime @default(now())
 
-  clients     Client[]
+  clients Client[]
+  Invoice Invoice[]
 }
 
 model Client {
-  id          String   @id @default(uuid())
-  userId      String    
-  user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id     String      @id @default(uuid())
+  userId String
+  user   UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-  name        String
-  email       String?
-  phone       String?
-  address     String?
+  name    String
+  email   String?
+  phone   String?
+  address String?
 
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+  InvoiceClient InvoiceClient[]
+}
+
+model Invoice {
+  id     String      @id @default(uuid())
+  userId String
+  user   UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  title     String
+  issueDate DateTime
+  dueDate   DateTime
+  status    InvoiceStatus
+  notes     String?
+
+  subtotal Float
+  tax      Float
+  total    Float
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  clients   InvoiceClient[]
+  lineItems LineItem[]
+}
+
+model InvoiceClient {
+  id        String @id @default(uuid())
+  invoiceId String
+  clientId  String
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+  client  Client  @relation(fields: [clientId], references: [id], onDelete: Cascade)
+
+  @@unique([invoiceId, clientId])
+}
+
+model LineItem {
+  id          String @id @default(uuid())
+  invoiceId   String
+  description String
+  quantity    Int
+  unitPrice   Float
+  total       Float
+
+  invoice Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
+}
+
+enum InvoiceStatus {
+  DRAFT
+  SENT
+  PAID
+  OVERDUE
 }
