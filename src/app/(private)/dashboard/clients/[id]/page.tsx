@@ -8,18 +8,19 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import type { Metadata } from 'next';
 
-type RouteParams = {
+type RouteParams = Promise<{
   id: string;
-};
+}>;
 
 type PageProps = {
   params: RouteParams;
 };
 
+// Metadata generator (must await params in Next.js 15)
 export async function generateMetadata({
   params,
 }: {
-  params: Promise<RouteParams>;
+  params: RouteParams;
 }): Promise<Metadata> {
   const { id } = await params;
 
@@ -35,7 +36,10 @@ export async function generateMetadata({
   };
 }
 
+// Main page component (await params to extract id)
 export default async function ClientPage({ params }: PageProps) {
+  const { id } = await params;
+
   const supabase = await createSupabaseServerClient();
   const {
     data: { user },
@@ -51,7 +55,7 @@ export default async function ClientPage({ params }: PageProps) {
 
   const client = await prisma.client.findFirst({
     where: {
-      id: params.id,
+      id,
       userId: userProfile.id,
     },
   });
