@@ -24,8 +24,10 @@ export function DeleteInvoiceButton({ invoiceId }: Props) {
         await deleteInvoice(invoiceId);
         toast.success('Invoice deleted');
         router.push('/dashboard/invoices');
-      } catch (err: any) {
-        toast.error(err.message || 'Failed to delete invoice');
+      } catch (err: unknown) {
+        const message =
+          err instanceof Error ? err.message : 'Failed to delete invoice';
+        toast.error(message);
       }
     });
   };
@@ -35,8 +37,8 @@ export function DeleteInvoiceButton({ invoiceId }: Props) {
       variant="destructive"
       onClick={handleDelete}
       disabled={isPending}
-              className="cursor-pointer"
-              size="icon"
+      className="cursor-pointer"
+      size="icon"
     >
       {isPending ? 'Deleting...' : <Trash />}
     </Button>
