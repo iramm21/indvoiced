@@ -30,7 +30,7 @@ model UserProfile {
 
 model Client {
   id          String   @id @default(uuid())
-  userId      String    @unique
+  userId      String    
   user        UserProfile @relation(fields: [userId], references: [id], onDelete: Cascade)
 
   name        String

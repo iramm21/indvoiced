@@ -19,13 +19,14 @@ export default async function ClientPage({ params }: ClientPageProps) {
 
   if (!user) return notFound();
 
+  // Fetch UserProfile by authUserId (Supabase user ID)
   const userProfile = await prisma.userProfile.findUnique({
     where: { authUserId: user.id },
   });
 
   if (!userProfile) return notFound();
 
-  // Use findFirst to filter by id and userId together
+  // Fetch client by id and userProfile.id as userId
   const client = await prisma.client.findFirst({
     where: {
       id: params.id,
