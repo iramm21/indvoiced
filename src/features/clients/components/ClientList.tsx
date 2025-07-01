@@ -37,14 +37,14 @@ function ClientListInner({ userId }: ClientListProps) {
   const fetchClients = useCallback(async () => {
     setLoading(true);
     try {
-      const data = await getClients(userId);
+      const data = await getClients();
       setClients(data);
     } catch {
       toast.error('Failed to load clients');
     } finally {
       setLoading(false);
     }
-  }, [userId]);
+  }, []);
 
   useEffect(() => {
     fetchClients();
