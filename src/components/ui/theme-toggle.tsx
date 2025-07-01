@@ -5,7 +5,11 @@ import { useEffect, useState } from 'react';
 import { Switch } from '@/components/ui/switch';
 import { Sun, Moon } from 'lucide-react';
 
-export function ThemeToggle() {
+interface ThemeToggleProps {
+  className?: string;
+}
+
+export function ThemeToggle({ className }: ThemeToggleProps) {
   const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
 
@@ -18,7 +22,7 @@ export function ThemeToggle() {
   const isDark = resolvedTheme === 'dark';
 
   return (
-    <div className="flex items-center space-x-3">
+    <div className={`flex items-center space-x-3 ${className ?? ''}`}>
       {isDark ? (
         <Moon className="w-5 h-5 transition-all rotate-0 scale-100 text-muted-foreground" />
       ) : (
