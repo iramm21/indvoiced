@@ -30,6 +30,12 @@ export default async function DashboardPage() {
     );
   }
 
+  const clientCount = await prisma.client.count({
+    where: {
+      userId: userProfile.id,
+    },
+  });
+
   return (
     <div className="space-y-8">
       {/* Welcome Header */}
@@ -52,7 +58,7 @@ export default async function DashboardPage() {
         <DashboardCard title="Total Invoices" value="$12,420" />
         <DashboardCard title="Outstanding" value="$3,200" />
         <DashboardCard title="Paid" value="$9,220" />
-        <DashboardCard title="Clients" value="18" />
+        <DashboardCard title="Clients" value={clientCount.toString()} />
       </div>
 
       {/* Placeholder for Charts or Recent Activity */}
